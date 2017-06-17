@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 9/Attenuation And Shadow Use Build-in Functions" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Unity Shaders Book/Chapter 9/Attenuation And Shadow Use Build-in Functions" {
 	Properties {
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
@@ -45,7 +47,7 @@
 			 	
 			 	o.worldNormal = UnityObjectToWorldNormal(v.normal);
 			 	
-			 	o.worldPos = mul(_Object2World, v.vertex).xyz;
+			 	o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			 	
 			 	// Pass shadow coordinates to pixel shader
 			 	TRANSFER_SHADOW(o);
@@ -115,7 +117,7 @@
 			 	
 			 	o.worldNormal = UnityObjectToWorldNormal(v.normal);
 			 	
-			 	o.worldPos = mul(_Object2World, v.vertex).xyz;
+			 	o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			 	
 			 	// Pass shadow coordinates to pixel shader
 			 	TRANSFER_SHADOW(o);

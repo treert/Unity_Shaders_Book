@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 6/Diffuse Pixel-Level" {
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Unity Shaders Book/Chapter 6/Diffuse Pixel-Level" {
 	Properties {
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 	}
@@ -31,7 +33,7 @@
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 
 				// Transform the normal from object space to world space
-				o.worldNormal = mul(v.normal, (float3x3)_World2Object);
+				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 
 				return o;
 			}

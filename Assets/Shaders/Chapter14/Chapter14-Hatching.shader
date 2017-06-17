@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 ///
 ///  Reference: 	Praun E, Hoppe H, Webb M, et al. Real-time hatching[C]
 ///						Proceedings of the 28th annual conference on Computer graphics and interactive techniques. ACM, 2001: 581.
@@ -97,7 +99,7 @@ Shader "Unity Shaders Book/Chapter 14/Hatching" {
 					o.hatchWeights1.z = 1.0 - o.hatchWeights1.y;
 				}
 				
-				o.worldPos = mul(_Object2World, v.vertex).xyz;
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				
 				TRANSFER_SHADOW(o);
 				

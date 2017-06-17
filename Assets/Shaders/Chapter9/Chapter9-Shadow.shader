@@ -1,4 +1,7 @@
-﻿Shader "Unity Shaders Book/Chapter 9/Shadow" {
+﻿// Upgrade NOTE: replaced '_LightMatrix0' with 'unity_WorldToLight'
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Unity Shaders Book/Chapter 9/Shadow" {
 	Properties {
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
@@ -45,7 +48,7 @@
 			 	
 			 	o.worldNormal = UnityObjectToWorldNormal(v.normal);
 
-			 	o.worldPos = mul(_Object2World, v.vertex).xyz;
+			 	o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			 	
 			 	// Pass shadow coordinates to pixel shader
 			 	TRANSFER_SHADOW(o);
@@ -115,7 +118,7 @@
 			 	
 			 	o.worldNormal = UnityObjectToWorldNormal(v.normal);
 			 	
-			 	o.worldPos = mul(_Object2World, v.vertex).xyz;
+			 	o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			 	
 			 	return o;
 			}
@@ -137,7 +140,7 @@
 				#ifdef USING_DIRECTIONAL_LIGHT
 					fixed atten = 1.0;
 				#else
-					float3 lightCoord = mul(_LightMatrix0, float4(i.worldPos, 1)).xyz;
+					float3 lightCoord = mul(unity_WorldToLight, float4(i.worldPos, 1)).xyz;
 					fixed atten = tex2D(_LightTexture0, dot(lightCoord, lightCoord).rr).UNITY_ATTEN_CHANNEL;
 				#endif
 			 	

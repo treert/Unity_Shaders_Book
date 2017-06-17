@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 10/Reflection" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Unity Shaders Book/Chapter 10/Reflection" {
 	Properties {
 		_Color ("Color Tint", Color) = (1, 1, 1, 1)
 		_ReflectColor ("Reflection Color", Color) = (1, 1, 1, 1)
@@ -47,7 +49,7 @@
 				
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				
-				o.worldPos = mul(_Object2World, v.vertex).xyz;
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				
 				o.worldViewDir = UnityWorldSpaceViewDir(o.worldPos);
 				

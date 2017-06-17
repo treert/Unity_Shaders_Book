@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 6/Blinn-Phong Use Built-in Functions" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Unity Shaders Book/Chapter 6/Blinn-Phong Use Built-in Functions" {
 	Properties {
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
@@ -37,7 +39,7 @@
 				// Use the build-in funtion to compute the normal in world space
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				
-				o.worldPos = mul(_Object2World, v.vertex);
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex);
 				
 				return o;
 			}

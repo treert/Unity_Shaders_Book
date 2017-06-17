@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 15/Dissolve" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Unity Shaders Book/Chapter 15/Dissolve" {
 	Properties {
 		_BurnAmount ("Burn Amount", Range(0.0, 1.0)) = 0.0
 		_LineWidth("Burn Line Width", Range(0.0, 0.2)) = 0.1
@@ -66,7 +68,7 @@
 				TANGENT_SPACE_ROTATION;
   				o.lightDir = mul(rotation, ObjSpaceLightDir(v.vertex)).xyz;
   				
-  				o.worldPos = mul(_Object2World, v.vertex).xyz;
+  				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
   				
   				TRANSFER_SHADOW(o);
 				

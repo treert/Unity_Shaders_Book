@@ -1,4 +1,6 @@
-﻿Shader "Unity Shaders Book/Chapter 6/Diffuse Vertex-Level" {
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Unity Shaders Book/Chapter 6/Diffuse Vertex-Level" {
 	Properties {
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 	}
@@ -34,7 +36,7 @@
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
 				
 				// Transform the normal from object space to world space
-				fixed3 worldNormal = normalize(mul(v.normal, (float3x3)_World2Object));
+				fixed3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));
 				// Get the light direction in world space
 				fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
 				// Compute diffuse term
