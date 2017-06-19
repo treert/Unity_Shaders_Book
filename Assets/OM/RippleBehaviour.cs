@@ -58,7 +58,10 @@ public class RippleBehaviour : MonoBehaviour {
         }
         High();
         CalcOffet();
-        //Graphics.Blit(_ripple_tex, _target_tex);
+        if(_target_tex)
+        {
+            Graphics.Blit(_ripple_tex, _target_tex);
+        }
     }
 
     void OnGUI()
